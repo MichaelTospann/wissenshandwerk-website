@@ -1,0 +1,101 @@
+:root {
+  color-scheme: light;
+  --ink: #162e30;
+  --muted: #506564;
+  --line: #bed0c9;
+  --paper: #fffef9;
+  --soft: #edf3ed;
+  --accent: #255d50;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #e8eee8; color: var(--ink); font: 16px/1.5 Arial, Helvetica, sans-serif; }
+.screen-note { max-width: 840px; margin: 22px auto; padding: 18px 24px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.screen-note strong { font-size: 18px; }
+.screen-note p { margin: 7px 0 0; font-size: 14px; }
+main { max-width: 840px; margin: 0 auto 40px; }
+.sheet { padding: 36px 40px 26px; margin-bottom: 24px; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 10px 35px #16302a10; }
+.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.monogram { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent); font-size: 18px; font-weight: 700; }
+.brand strong { display: block; font-size: 17px; }
+.brand div span { display: block; font-size: 11px; color: var(--muted); }
+.page { margin-left: auto; color: var(--muted); font-size: 12px; }
+.eyebrow { margin: 0 0 7px; font-size: 10px; font-weight: 700; letter-spacing: .12em; color: var(--accent); }
+h1 { font-size: 34px; line-height: 1.1; letter-spacing: -.035em; margin: 0 0 16px; font-weight: 700; }
+.lead { margin: 0 0 22px; color: var(--muted); font-size: 14px; }
+.meta { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 0 0 22px; }
+label { display: block; font-size: 12px; font-weight: 700; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 22px; }
+.field { break-inside: avoid; }
+h2 { font-size: 14px; line-height: 1.3; margin: 0 0 6px; }
+.field h2 b { font-size: 10px; display: inline-block; color: var(--accent); margin-right: 7px; }
+.field p { margin: 0 0 7px; font-size: 12px; color: var(--muted); min-height: 36px; }
+.write { min-height: 80px; padding: 6px; border: 1px solid var(--line); background: #fff; font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.write:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.write.short { min-height: 34px; margin-top: 6px; }
+.note { margin-top: 22px; padding: 14px 16px; border-left: 3px solid var(--accent); background: var(--soft); font-size: 12px; break-inside: avoid; }
+.note p { margin: 5px 0 0; }
+footer { font-size: 10px; line-height: 1.45; color: var(--muted); margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--line); }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; padding: 13px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.three p { margin: 0; color: var(--muted); font-size: 12px; }
+.section-title { font-size: 15px; margin: 20px 0 7px; }
+.check-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+caption { caption-side: top; text-align: left; font-size: 11px; color: var(--muted); padding-bottom: 9px; }
+th, td { text-align: left; border: 1px solid var(--line); vertical-align: top; }
+th { width: 31%; padding: 10px; background: var(--soft); font-size: 12px; }
+th span { font-size: 10px; font-weight: 400; }
+td { padding: 0; }
+.table-write { border: 0; min-height: 52px; }
+.example { margin: 20px 0; padding: 13px 16px; border: 1px solid var(--line); font-size: 12px; break-inside: avoid; }
+.example p { margin: 5px 0 0; }
+.hint { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+.correction { min-height: 62px; }
+.limit { font-size: 11px; color: var(--muted); margin: 17px 0 0; }
+@media screen and (max-width: 600px) {
+  .screen-note { margin: 12px; padding: 14px; }
+  main { margin: 0 12px 24px; }
+  .sheet { padding: 24px 20px; }
+  h1 { font-size: 28px; }
+  .fields, .meta, .three { grid-template-columns: 1fr; }
+  .field p { min-height: 0; }
+  .brand { gap: 8px; }
+  .brand strong { font-size: 15px; }
+  th { width: 38%; }
+}
+@page { size: A4 portrait; margin: 13mm 14mm; }
+@media print {
+  :root { --ink: #111; --muted: #333; --line: #aaa; --paper: #fff; --soft: #fff; --accent: #111; }
+  body { background: #fff; font-size: 10pt; line-height: 1.35; }
+  .screen-note { display: none; }
+  main { max-width: none; margin: 0; }
+  .sheet { margin: 0; padding: 0; border: 0; box-shadow: none; break-after: page; }
+  .sheet:last-child { break-after: auto; }
+  .brand { margin-bottom: 6mm; }
+  .monogram { width: 10mm; height: 10mm; font-size: 13pt; border-radius: 2mm; }
+  .brand strong { font-size: 12pt; }
+  .brand div span { font-size: 8pt; }
+  .eyebrow { font-size: 7pt; margin-bottom: 2mm; }
+  h1 { font-size: 25pt; margin-bottom: 3mm; }
+  .lead { font-size: 9pt; margin-bottom: 4mm; }
+  .meta { gap: 5mm; margin-bottom: 4mm; }
+  label { font-size: 8pt; }
+  .fields { gap: 4mm 5mm; }
+  h2 { font-size: 10pt; }
+  .field p { min-height: 9mm; font-size: 8pt; margin-bottom: 2mm; }
+  .write { min-height: 17mm; font-size: 10pt; padding: 2mm; }
+  .write.short { min-height: 8mm; margin-top: 1mm; }
+  .note { margin-top: 5mm; padding: 3mm 4mm; font-size: 8pt; }
+  footer { font-size: 7pt; margin-top: 4mm; padding-top: 3mm; }
+  .three { gap: 4mm; margin: 4mm 0; padding: 3mm 0; }
+  .three p { font-size: 8pt; }
+  .section-title { font-size: 10pt; margin: 4mm 0 2mm; }
+  caption { font-size: 8pt; padding-bottom: 2mm; }
+  th { font-size: 8pt; padding: 2mm; }
+  th span { font-size: 7pt; }
+  .table-write { min-height: 12mm; }
+  .example { margin: 4mm 0; padding: 3mm 4mm; font-size: 8pt; }
+  .hint { font-size: 8pt; }
+  .correction { min-height: 15mm; }
+  .limit { font-size: 8pt; margin-top: 4mm; }
+  h1, h2 { break-after: avoid; }
+  tr, .three, .example, .limit, footer { break-inside: avoid; }
+}
