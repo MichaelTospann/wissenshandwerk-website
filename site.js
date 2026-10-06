@@ -1,4 +1,5 @@
 'use strict';
+const whSignal=(name,detail)=>{if(typeof CustomEvent==='function'&&typeof document.dispatchEvent==='function')document.dispatchEvent(new CustomEvent(name,{detail}));};
 // Optional visual controls. Content and links remain usable without JavaScript.
 (()=>{
  const toggle=document.querySelector('.menu-toggle');
@@ -69,12 +70,13 @@ if(form){
   if(validRecipient)mailLink.href=`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.replace(/\r?\n/g,'\r\n'))}`;
   else mailLink.removeAttribute('href');
   document.querySelector('#request-text').focus();
+  whSignal('wh-contact-draft-prepared',{kind:({'Kursinteresse':'course','Firmenschulung':'company','Kooperation':'partner'})[topic]});
  });
- document.querySelector('#copy-request').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.querySelector('#request-text').value);document.querySelector('#contact-status').textContent='Anfragetext kopiert. Bitte in deinen Maildienst einfügen und dort versenden. Hier wurde nichts versendet.';}catch{document.querySelector('#request-text').focus();document.querySelector('#request-text').select();document.querySelector('#contact-status').textContent='Text markiert. Mit Strg+C kopieren und in deinem Maildienst versenden. Hier wurde nichts versendet.';}});
+ document.querySelector('#copy-request').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.querySelector('#request-text').value);whSignal('wh-contact-copy',{part:'message'});document.querySelector('#contact-status').textContent='Anfragetext kopiert. Bitte in deinen Maildienst einfügen und dort versenden. Hier wurde nichts versendet.';}catch{document.querySelector('#request-text').focus();document.querySelector('#request-text').select();document.querySelector('#contact-status').textContent='Text markiert. Mit Strg+C kopieren und in deinem Maildienst versenden. Hier wurde nichts versendet.';}});
  for(const [buttonId,inputId,label] of [['copy-recipient','request-recipient','Empfänger'],['copy-subject','request-subject','Betreff']]){
   document.querySelector('#'+buttonId).addEventListener('click',async()=>{
    const input=document.querySelector('#'+inputId);if(!input.value)return;
-   try{await navigator.clipboard.writeText(input.value);document.querySelector('#contact-status').textContent=label+' kopiert. Bitte im eigenen Maildienst einfügen. Hier wurde nichts versendet.';}
+   try{await navigator.clipboard.writeText(input.value);whSignal('wh-contact-copy',{part:buttonId==='copy-recipient'?'recipient':'subject'});document.querySelector('#contact-status').textContent=label+' kopiert. Bitte im eigenen Maildienst einfügen. Hier wurde nichts versendet.';}
    catch{input.focus();input.select();document.querySelector('#contact-status').textContent=label+' markiert. Mit Strg+C kopieren. Hier wurde nichts versendet.';}
   });
  }
