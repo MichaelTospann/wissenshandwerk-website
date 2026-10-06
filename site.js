@@ -14,7 +14,7 @@ if(form){
   const experience=document.querySelector('#contact-experience').value.trim();
   if(!goal){document.querySelector('#contact-status').textContent='Beschreibe bitte kurz dein Vorhaben.';document.querySelector('#contact-goal').focus();return;}
   const source=document.querySelector('#contact-source').value.trim();
-  const body=`Guten Tag Michael,\n\nAnliegen: ${topic}\n${name?`Name/Unternehmen: ${name}\n`:''}\nMein Vorhaben:\n${goal}\n${experience?`\nBisherige Erfahrung:\n${experience}\n`:''}${source?`\nAufmerksam geworden durch:\n${source}\n`:''}\nBitte sende mir Informationen zum passenden Kurs bzw. zu einer möglichen Zusammenarbeit. Meine Anfrage ist unverbindlich.\n`;
+  const body=`Hallo Wissenshandwerk,\n\nAnliegen: ${topic}\n${name?`Name/Unternehmen: ${name}\n`:''}\nMein Vorhaben:\n${goal}\n${experience?`\nBisherige Erfahrung:\n${experience}\n`:''}${source?`\nAufmerksam geworden durch:\n${source}\n`:''}\nBitte sendet mir Informationen zum passenden Kurs bzw. zu einer möglichen Zusammenarbeit. Meine Anfrage ist unverbindlich.\n`;
   const subject=`${form.dataset.brand || 'Wissenshandwerk'} – ${topic}`;
   document.querySelector('#request-text').value=`Betreff: ${subject}\n\n${body}`;
   document.querySelector('#prepared-request').hidden=false;
